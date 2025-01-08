@@ -3,6 +3,10 @@
 
 #AC_PREREQ(2.57)
 
+# Set C++ compiler flags for C++17
+AC_LANG([C++])
+AX_CXX_COMPILE_STDCXX([17], [], [mandatory])
+
 AC_INIT(pasmo, 0.5.5, julian.notfound@gmail.com)
 
 AM_INIT_AUTOMAKE([foreign])
