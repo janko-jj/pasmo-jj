@@ -39,3 +39,12 @@ jobs:
 
     - name: Run tests
       run: make check
+
+    - name: Archive binary
+      run: zip -j pasmo-macos.zip pasmo
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: pasmo-macos
+        path: pasmo-macos.zip
