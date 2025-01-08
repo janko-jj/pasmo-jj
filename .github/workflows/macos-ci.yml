@@ -1,0 +1,41 @@
+name: CI for macOS with Autotools
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout stable branch
+      uses: actions/checkout@v2
+      with:
+        ref: stable
+
+    - name: Install Homebrew
+      run: |
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+
+    - name: Install Autotools
+      run: |
+        brew install autoconf automake
+
+    - name: Run aclocal
+      run: aclocal -I .
+
+    - name: Run automake
+      run: automake --add-missing --copy
+
+    - name: Run autoconf
+      run: autoconf      
+
+    - name: Configure
+      run: ./configure
+
+    - name: Build
+      run: make
+
+    - name: Run tests
+      run: make check
