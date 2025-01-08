@@ -32,7 +32,7 @@ jobs:
       run: autoconf      
 
     - name: Configure
-      run: ./configure
+      run: ./configure  CXXFLAGS="-std=c++17"
 
     - name: Build
       run: make
