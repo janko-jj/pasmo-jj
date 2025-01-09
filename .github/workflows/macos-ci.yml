@@ -44,7 +44,7 @@ jobs:
       run: zip -j pasmo-macos.zip pasmo
 
     - name: Archive all
-      run: zip -R -r pasmo-macos-all.zip *
+      run: zip -r pasmo-macos-all.zip * .*
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
