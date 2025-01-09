@@ -40,23 +40,21 @@ jobs:
     - name: Run tests
       run: make check
 
-    - name: git diff
-      run: git diff
-
     - name: Archive binary
       run: zip -j pasmo-macos.zip pasmo
 
     - name: Archive all
-      run: zip -R pasmo-macos-all.zip *
+      run: zip -R -r pasmo-macos-all.zip *
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: pasmo-macos
         path: pasmo-macos.zip
 
-    - name: Upload all
-      uses: actions/upload-artifact@v3
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
       with:
         name: pasmo-macos-all
         path: pasmo-macos-all.zip
+
